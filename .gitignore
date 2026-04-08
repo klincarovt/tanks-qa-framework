@@ -1,0 +1,14 @@
+# Maven
+target/
+
+# VSCode
+.vscode/
+
+# Temp files
+jar-contents/
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
