@@ -9,24 +9,32 @@
     <version>1.0-SNAPSHOT</version>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <!-- Single release flag replaces source+target and silences the JDK 11 module warning -->
+        <maven.compiler.release>11</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
-        <!-- AltTester Java Driver -->
-        <dependency>
-            <groupId>com.alttester</groupId>
-            <artifactId>alttester</artifactId>
-            <version>2.2.0</version>
-        </dependency>
-
         <!-- JUnit 5 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>
             <version>5.10.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Logging API — used in framework code -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.9</version>
+        </dependency>
+
+        <!-- Logging implementation — active during test runs -->
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>1.4.11</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -37,6 +45,12 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.1.2</version>
+                <configuration>
+                    <!-- Surface the full stack trace without needing -e -->
+                    <trimStackTrace>false</trimStackTrace>
+                    <!-- Do not mask failures behind a "BUILD SUCCESS" -->
+                    <failIfNoTests>false</failIfNoTests>
+                </configuration>
             </plugin>
         </plugins>
     </build>

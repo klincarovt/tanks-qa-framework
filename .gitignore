@@ -3,6 +3,7 @@ target/
 
 # VSCode
 .vscode/
+.claude/
 
 # Temp files
 jar-contents/

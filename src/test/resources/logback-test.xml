@@ -1,0 +1,16 @@
+<configuration>
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %-5level [%logger{0}] %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Framework internals at DEBUG so every command/response is visible -->
+    <logger name="com.tanksqa" level="DEBUG" />
+
+    <root level="WARN">
+        <appender-ref ref="CONSOLE" />
+    </root>
+
+</configuration>
